@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Cool Blog",
+    "description": "This is an example post"
+  },
+  {
+    "name": "Sweet tech talks",
+    "description": "This is an example post"
+  },
+  {
+    "name": "Stop talking to me",
+    "description": "This is an example post"
+  }
+]
