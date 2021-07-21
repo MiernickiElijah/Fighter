@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User } = require('../models');
+const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -33,10 +33,7 @@ router.get('/post/:id', async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['name'],
-
-          // model: Comment,
-          // attributes: ['discription']
+          attributes: ['name']
           
         },
       ],
@@ -44,11 +41,24 @@ router.get('/post/:id', async (req, res) => {
 
     const post = postData.get({ plain: true });
 
+    const comments = await Comment.findAll({where: {post_id: req.params.id}, 
+      include: [
+      {
+        model: User,
+        attributes: ['name']
+        
+      },
+    ],
+  });
+    console.log(comments.map(i => i.get({ plain: true })));
+
     res.render('post', {
       ...post,
+      comments: comments.map(i => i.get({ plain: true })),
       logged_in: req.session.logged_in
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -69,6 +79,32 @@ console.log(user);
       logged_in: true
     });
   } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/comment/:id', async (req, res) => {
+  try {
+    console.log("id", req.params.id);
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+          model: Comment,
+          attributes: ['description']
+          
+        },
+      ],
+    });
+    console.log("PD", postData);
+    const post = postData.get({ plain: true });
+    res.render('comment', {
+      ...post,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });

@@ -37,29 +37,6 @@ const delButtonHandler = async (event) => {
   }
 };
 
-const commentHandler = async (event) => {
-  event.preventDefault();
-
-  const name = document.querySelector('#comment-name').value.trim();
-  const description = document.querySelector('#comment-desc').value.trim();
-
-  if (name && description) {
-    const response = await fetch(`/api/comments`, {
-      method: 'POST',
-      body: JSON.stringify({ name, description }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.ok) {
-      document.location.replace('/profile');
-    } else {
-      alert('Failed to post post');
-    }
-  }
-};
-
 document
   .querySelector('.new-post-form')
   .addEventListener('submit', newFormHandler);
@@ -67,7 +44,3 @@ document
 document
   .querySelector('.post-list')
   .addEventListener('click', delButtonHandler);
-
-document
-  .querySelector('.comment')
-  .addEventListener('click', commentHandler);
