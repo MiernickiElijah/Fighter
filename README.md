@@ -19,7 +19,7 @@ In command line: "npm i" , then "node server" . In browser: navigate the webpage
 https://miernickielijah.github.io/Fighter/
 --------------
 ## Screenshot  
-![Screenshot](assets/images/screenshot.png)
+![Screenshot](../fighter/public/assets/images/screenshot.png)
 --------------
 ## Credits  
 
