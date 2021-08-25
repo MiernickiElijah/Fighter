@@ -14,9 +14,9 @@ This is a Tech Blog much like a Wordpress site where developers can communicate.
 [License](#License)  
 --------------
 ## Usage  
-In command line: "npm i" , then "node server" . In browser: navigate the webpage to login, create a blog post, and comment. 
+In command line: In browser: navigate the webpage to login/signup, create a blog post, and comment on others. 
 
-https://miernickielijah.github.io/Fighter/
+https://fighter-miernicki.herokuapp.com/
 --------------
 ## Screenshot  
 ![Screenshot](../Fighter/public/assets/images/screenshot.png)
